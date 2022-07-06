@@ -1,0 +1,35 @@
+﻿@page "/SyncfusionExamples"
+
+<h3>SyncfusionExamples</h3>
+
+<PageTitle>Syncfusion Examples</PageTitle>
+
+<SfCalendar TValue="DateTime"></SfCalendar>
+
+<SfGrid DataSource="@EmployeeData"></SfGrid>
+
+@code {
+    public class Employee
+    {
+        public int EmployeeID { get; set; }
+        public string Name { get; set; }
+        public string Designation { get; set; }
+        public DateTime DOJ { get; set; }
+        public double Salary { get; set; }
+    }
+
+    public List<Employee> EmployeeData { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        EmployeeData = Enumerable.Range(1, 500).Select(x => new Employee()
+            {
+                EmployeeID = 1000 + x,
+                Name = (new string[] { "Huan", "Thu", "Bob", "Emma", "Boltie" })[new Random().Next(5)],
+                Designation = (new string[] { "Africa", "Europe", "United States", "London", "Alantic" })[new Random().Next(5)],
+                DOJ = DateTime.Now.AddDays(-x),
+                Salary = 30000 * x,
+    }).ToList();
+    }
+}

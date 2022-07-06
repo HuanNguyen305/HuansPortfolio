@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,12 +22,16 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+builder.Services.AddSyncfusionBlazor();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjY5ODQwQDMyMzAyZTMyMmUzMFE2TlBMVTJqTG5xY2xiMzlsUGJtT0dRNXlydHJzYmlLR293QmJLeXhJU2c9");
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
 }
 else
 {

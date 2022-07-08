@@ -1,3 +1,4 @@
+using DataAccessLibrary;
 using HuansPortfolio.Areas.Identity;
 using HuansPortfolio.Data;
 using Microsoft.AspNetCore.Components;
@@ -22,7 +23,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-builder.Services.AddSyncfusionBlazor();
+builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
+builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddTransient<IPeopleData, PeopleData>();
 
 var app = builder.Build();
 

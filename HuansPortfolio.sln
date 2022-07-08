@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuansPortfolio", "HuansPortfolio.csproj", "{A399895C-9A83-4816-8A8A-058CC73CD443}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLibrary", "..\DataAccessLibrary\DataAccessLibrary.csproj", "{0FA8911F-6293-4A1E-9E23-B8E9A4BE322F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A399895C-9A83-4816-8A8A-058CC73CD443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A399895C-9A83-4816-8A8A-058CC73CD443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A399895C-9A83-4816-8A8A-058CC73CD443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FA8911F-6293-4A1E-9E23-B8E9A4BE322F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA8911F-6293-4A1E-9E23-B8E9A4BE322F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA8911F-6293-4A1E-9E23-B8E9A4BE322F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA8911F-6293-4A1E-9E23-B8E9A4BE322F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

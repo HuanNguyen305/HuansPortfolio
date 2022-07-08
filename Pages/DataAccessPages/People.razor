@@ -1,0 +1,67 @@
+﻿@page "/DataAccessPages/People"
+
+@using DataAccessLibrary
+@using DataAccessLibrary.Model
+@using HuansPortfolio.Data.Models
+
+@inject IPeopleData _db
+
+<h3>People Page</h3>
+
+<h4>Insert New Person</h4>
+<EditForm Model="@newPerson" OnValidSubmit="@InsertPerson">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="FirstName" @bind-Value="newPerson.FirstName" />
+    <InputText id="LastName" @bind-Value="newPerson.LastName" />
+    <InputText id="EmailAddress" @bind-Value="newPerson.EmailAddress" />
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+<h4>Current People</h4>
+@if (people is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+     
+    <SfGrid @ref="grid" DataSource="@people" EnableHeaderFocus="true" AllowSelection="true" AllowSorting="true" AllowFiltering="true" EnableVirtualization="true" EnableHover="true" AllowPaging="true" Height="600" RowHeight="38">
+    @*<GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true"></GridEditSettings>*@
+                    <GridSelectionSettings CheckboxOnly="true" PersistSelection="true" Type="SelectionType.Multiple"></GridSelectionSettings>
+    </SfGrid>
+}
+
+
+
+@code {
+
+    private List<PersonModel> people;
+    private DisplayPersonModel newPerson = new DisplayPersonModel();
+    SfGrid<PersonModel> grid { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        people = await _db.GetPeople();
+    }
+
+    private async Task InsertPerson()
+    {
+        PersonModel p = new PersonModel()
+        {
+            FirstName = newPerson.FirstName,
+            LastName = newPerson.LastName,
+            EmailAddress = newPerson.EmailAddress
+        };
+        await _db.InsertPerson(p);
+
+        people.Add(p);   
+        newPerson = new DisplayPersonModel();
+        await grid.Refresh();
+
+    }
+
+
+}

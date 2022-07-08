@@ -1,19 +1,43 @@
 ﻿@page "/SyncfusionExamples"
 
-<h3>SyncfusionExamples</h3>
+
+<h2>Syncfusion Examples</h2>
 
 <PageTitle>Syncfusion Examples</PageTitle>
 
+<h3>Calenders</h3>
 <SfCalendar TValue="DateTime"></SfCalendar>
 
-<SfGrid DataSource="@EmployeeData"></SfGrid>
+<h3>Data Grid</h3>
+<SfGrid DataSource="@EmployeeData" EnableHeaderFocus="true" AllowSelection="true" AllowSorting="true" AllowFiltering="true" EnableVirtualization="true" EnableHover="true" AllowPaging="true" Height="600" RowHeight="38">
+     <GridPageSettings PageSize="40"></GridPageSettings>
+                    <GridSelectionSettings CheckboxOnly="true" PersistSelection="true" Type="SelectionType.Multiple"></GridSelectionSettings>
+</SfGrid>
+
+<h3>Rich Text Editor</h3>
+<SfRichTextEditor>
+    <RichTextEditorToolbarSettings Items="@Tools" Type="ToolbarType.Expand" />
+    <p>
+        The Rich Text Editor is a WYSIWYG ('what you see is what you get') editor useful to create and edit content and return the valid
+        <a href='https://blazor.syncfusion.com/documentation/rich-text-editor/editor-modes/#html-editor'>HTML markup</a> or
+        <a href='https://blazor.syncfusion.com/documentation/rich-text-editor/editor-modes/#markdown-editor'>markdown</a> of the content
+    </p>
+               
+    @*<img alt='Logo' src='@(SampleService.WebAssetsPath + "images/rich-text-editor/rte-image-feather.png")' style='width: 300px' />*@
+    @*<RichTextEditorToolbarSettings Items="@Tools" />*@
+    @*<RichTextEditorQuickToolbarSettings Table="@TableQuickToolbarItems" />*@
+</SfRichTextEditor>
+
+
+
+
 
 @code {
     public class Employee
     {
         public int EmployeeID { get; set; }
-        public string Name { get; set; }
-        public string Designation { get; set; }
+        public string? Name { get; set; }
+        public string? Designation { get; set; }
         public DateTime DOJ { get; set; }
         public double Salary { get; set; }
     }
@@ -32,4 +56,32 @@
                 Salary = 30000 * x,
     }).ToList();
     }
+
+
+    private List<ToolbarItemModel> Tools = new List<ToolbarItemModel>() 
+    { 
+        new ToolbarItemModel() { Command = ToolbarCommand.Bold }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Italic }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Underline }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.StrikeThrough }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.FontColor }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.BackgroundColor }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Formats }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Alignments }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.OrderedList }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.UnorderedList }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Outdent }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Indent }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator },
+        new ToolbarItemModel() { Command = ToolbarCommand.CreateLink }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Image }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.CreateTable }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Separator }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Undo }, 
+        new ToolbarItemModel() { Command = ToolbarCommand.Redo } 
+    }; 
 }
